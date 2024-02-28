@@ -22,7 +22,7 @@ class custom extends StatelessWidget {
           top: 70, // Adjust this value to position the text vertically
           left: 220, // Adjust this value to position the text horizontally
           child: Text(
-            'Available Domains',
+            name,
             style: TextStyle(
               color: Colors.white, // Adjust text color as needed
               fontSize: 20, // Adjust font size as needed

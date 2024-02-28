@@ -11,14 +11,12 @@ class PostFetchingLoadingState extends PostsState {}
 
 class PostFetchingErrorState extends PostsState {}
 
-class NewPageNavigationState extends PostsState {
-  final Widget destinationPage;
-
-  NewPageNavigationState(this.destinationPage);
-}
-
 class PostFetchingSuccessfullState extends PostsState {
   final List<PostsUiDataModel> posts;
 
   PostFetchingSuccessfullState({required this.posts});
 }
+
+class AccountCreateSuccessState extends PostsActionState {}
+
+class AccountCreateErrorState extends PostsActionState {}

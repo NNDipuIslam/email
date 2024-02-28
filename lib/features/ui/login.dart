@@ -14,7 +14,6 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
-    final PostsBloc navigationBloc = BlocProvider.of<PostsBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text("Temp Mail")),
@@ -23,13 +22,7 @@ class _loginState extends State<login> {
       ),
       body: Column(
         children: [
-          ClipPath(
-            clipper: mycustomclipper(),
-            child: Container(
-              height: 150,
-              color: Colors.blue,
-            ),
-          ),
+          custom(name: "Login"),
           SizedBox(
             height: 20,
           ),
@@ -61,9 +54,7 @@ class _loginState extends State<login> {
             height: 30,
           ),
           ElevatedButton(
-              onPressed: () {
-                navigationBloc.add(NavigateToPage(domain()));
-              },
+              onPressed: () {},
               style: ButtonStyle(
                   minimumSize: MaterialStatePropertyAll(Size(300, 50))),
               child: Text("Log in")),
@@ -74,7 +65,15 @@ class _loginState extends State<login> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Do you have an account?"),
-              TextButton(onPressed: () {}, child: Text("sign Up"))
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => domain(),
+                        ));
+                  },
+                  child: Text("sign Up"))
             ],
           )
         ],

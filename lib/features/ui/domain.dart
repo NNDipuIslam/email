@@ -1,5 +1,6 @@
 import 'package:email/features/bloc/posts_bloc.dart';
 import 'package:email/features/models/clipPath.dart';
+import 'package:email/features/ui/create.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +22,6 @@ class _domainState extends State<domain> {
 
   @override
   Widget build(BuildContext context) {
-   // final PostsBloc navigationBloc = BlocProvider.of<PostsBloc>(context);
     return Scaffold(
         appBar: AppBar(
           title: Center(child: Text("Temp Mail")),
@@ -52,7 +52,9 @@ class _domainState extends State<domain> {
                           child: Column(children: [
                             custom(name: "Available Domains"),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  postsBloc.add(CreateAccountEvent());
+                                },
                                 child: Text("tap to create account or login")),
                             Container(
                               height: 50,
@@ -81,6 +83,20 @@ class _domainState extends State<domain> {
                       "Error Occured",
                       style: TextStyle(fontSize: 20),
                     )),
+                  );
+                case AccountCreateSuccessState:
+                  return Scaffold(
+                    body: SnackBar(
+                      content: Text('Sorry! Account is unable to create'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                case AccountCreateErrorState:
+                  return Scaffold(
+                    body: SnackBar(
+                      content: Text('Sorry! Account is unable to create'),
+                      duration: Duration(seconds: 2),
+                    ),
                   );
                 default:
                   return Text("sorry");

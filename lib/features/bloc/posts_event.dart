@@ -5,8 +5,4 @@ sealed class PostsEvent {}
 
 class InitialFetchEvent extends PostsEvent {}
 
-class NavigateToPage extends PostsEvent {
-  final Widget destinationPage;
-
-  NavigateToPage(this.destinationPage);
-}
+class CreateAccountEvent extends PostsEvent {}
