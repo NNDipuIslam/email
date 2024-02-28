@@ -1,7 +1,8 @@
+import 'package:email/features/ui/domain.dart';
 import 'package:email/features/ui/login.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -10,9 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: login(),
+      home: domain(),
     );
   }
 }
