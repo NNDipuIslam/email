@@ -1,5 +1,8 @@
+import 'package:email/features/bloc/posts_bloc.dart';
 import 'package:email/features/models/clipPath.dart';
+import 'package:email/features/ui/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class login extends StatefulWidget {
   const login({super.key});
@@ -11,6 +14,7 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
+    final PostsBloc navigationBloc = BlocProvider.of<PostsBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text("Temp Mail")),
@@ -57,7 +61,9 @@ class _loginState extends State<login> {
             height: 30,
           ),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                navigationBloc.add(NavigateToPage(domain()));
+              },
               style: ButtonStyle(
                   minimumSize: MaterialStatePropertyAll(Size(300, 50))),
               child: Text("Log in")),

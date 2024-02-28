@@ -1,24 +1,9 @@
-import 'dart:async';
 import 'dart:convert';
-
-import 'package:bloc/bloc.dart';
 import 'package:email/features/models/domain_post_ui_data_model.dart';
-import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart ' as http;
 
-part 'posts_event.dart';
-part 'posts_state.dart';
-
-class PostsBloc extends Bloc<PostsEvent, PostsState> {
-  PostsBloc() : super(PostsInitial()) {
-    on<InitialFetchEvent>(postsinitialfetchevent);
-    on<NavigateToPage>(navigateToPage);
-  }
-
-  void postsinitialfetchevent(
-      InitialFetchEvent event, Emitter<PostsState> emit) async {
-    emit(PostFetchingLoadingState());
+class DomainRepo {
+  static Future<List<PostsUiDataModel>> fetchPosts() async {
     var client = http.Client();
     List<PostsUiDataModel> posts = [];
     try {
@@ -33,25 +18,15 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         int totalItems = data['hydra:totalItems'];
         List<dynamic> result = data['hydra:member'];
         for (int i = 0; i < totalItems; i++) {
+          print(i);
           PostsUiDataModel post = PostsUiDataModel.fromJson(result[i]);
           posts.add(post);
         }
-
-        emit(PostFetchingSuccessfullState(posts: posts));
       }
     } catch (e) {
-      emit(PostFetchingErrorState());
     } finally {
       client.close(); // Close the HttpClient
     }
-  }
-
-  FutureOr<void> navigateToPage(
-      NavigateToPage event, Emitter<PostsState> emit) {
-    Stream<PostsState> mapEventToState(PostsEvent event) async* {
-      if (event is NavigateToPage) {
-        yield NewPageNavigationState(event.destinationPage);
-      }
-    }
+    return [];
   }
 }
