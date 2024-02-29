@@ -26,35 +26,40 @@ class _loginState extends State<login> {
           SizedBox(
             height: 20,
           ),
-          TextField(
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
-                fillColor: Colors.grey.shade100,
-                filled: true,
-                hintText: "Email",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                )),
+          Container(
+            padding: EdgeInsets.fromLTRB(26, 0, 26, 0),
+            child: TextField(
+              style: TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                  hintText: "Email",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  )),
+            ),
           ),
-          SizedBox(
-            height: 30,
-          ),
-          TextField(
-            style: TextStyle(),
-            obscureText: true,
-            decoration: InputDecoration(
-                fillColor: Colors.grey.shade100,
-                filled: true,
-                hintText: "Password",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                )),
+          Container(
+            padding: EdgeInsets.fromLTRB(26, 10, 26, 0),
+            child: TextField(
+              style: TextStyle(),
+              obscureText: true,
+              decoration: InputDecoration(
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                  hintText: "Password",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  )),
+            ),
           ),
           SizedBox(
             height: 30,
           ),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => check(),))
+              },
               style: ButtonStyle(
                   minimumSize: MaterialStatePropertyAll(Size(300, 50))),
               child: Text("Log in")),

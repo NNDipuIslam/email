@@ -57,7 +57,10 @@ class _domainState extends State<domain> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => create(),
+                                        builder: (context) => create(
+                                            domain: "@" +
+                                                successState
+                                                    .posts[index].domain),
                                       ));
                                 },
                                 child: Text("tap to create account or login")),
