@@ -45,7 +45,6 @@ class _createState extends State<create> {
               _obsecure = state.isPasswordVisible;
             }
             if (state is AccountCreateErrorState) {
-              print(10);
               showDialog(
                   context: context,
                   builder: (context) {

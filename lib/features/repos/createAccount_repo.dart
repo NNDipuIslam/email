@@ -19,9 +19,6 @@ class CreateAccountRepo {
         },
         body: json.encode(data),
       );
-
-      print(response.statusCode);
-
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return true;
       } else {

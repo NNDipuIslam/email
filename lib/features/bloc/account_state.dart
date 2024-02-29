@@ -22,6 +22,10 @@ class AccountCreateErrorState extends AccountState {
   });
 }
 
+class AccountCheckSuccessState extends AccountState {}
+
+class AccountCheckErrorState extends AccountState {}
+
 class PasswordVisibilityChangeState extends AccountState {
   final bool isPasswordVisible;
 

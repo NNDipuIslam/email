@@ -14,3 +14,12 @@ class CreateAccountEvent extends AccountEvent {
     required this.password,
   });
 }
+
+class CheckAccountEvent extends AccountEvent {
+  String email;
+  String password;
+  CheckAccountEvent({
+    required this.email,
+    required this.password,
+  });
+}
