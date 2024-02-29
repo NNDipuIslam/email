@@ -53,7 +53,12 @@ class _domainState extends State<domain> {
                             custom(name: "Available Domains"),
                             TextButton(
                                 onPressed: () {
-                                  postsBloc.add(CreateAccountEvent());
+                                  // postsBloc.add(CreateAccountEvent());
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => create(),
+                                      ));
                                 },
                                 child: Text("tap to create account or login")),
                             Container(
@@ -74,28 +79,6 @@ class _domainState extends State<domain> {
                           ]),
                         );
                       },
-                    ),
-                  );
-                case PostFetchingErrorState:
-                  return Scaffold(
-                    body: Center(
-                        child: Text(
-                      "Error Occured",
-                      style: TextStyle(fontSize: 20),
-                    )),
-                  );
-                case AccountCreateSuccessState:
-                  return Scaffold(
-                    body: SnackBar(
-                      content: Text('Sorry! Account is unable to create'),
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
-                case AccountCreateErrorState:
-                  return Scaffold(
-                    body: SnackBar(
-                      content: Text('Sorry! Account is unable to create'),
-                      duration: Duration(seconds: 2),
                     ),
                   );
                 default:

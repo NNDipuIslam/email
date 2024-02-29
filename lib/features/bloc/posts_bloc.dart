@@ -14,11 +14,10 @@ part 'posts_state.dart';
 
 class PostsBloc extends Bloc<PostsEvent, PostsState> {
   PostsBloc() : super(PostsInitial()) {
-    on<InitialFetchEvent>(postsinitialfetchevent);
-    on<CreateAccountEvent>(createAccountEvent);
+    on<InitialFetchEvent>(_postsinitialfetchevent);
   }
 
-  void postsinitialfetchevent(
+  void _postsinitialfetchevent(
       InitialFetchEvent event, Emitter<PostsState> emit) async {
     emit(PostFetchingLoadingState());
     try {
@@ -26,18 +25,6 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       emit(PostFetchingSuccessfullState(posts: posts));
     } catch (e) {
       emit(PostFetchingErrorState());
-    }
-  }
-
-  void createAccountEvent(
-      CreateAccountEvent event, Emitter<PostsState> emit) async {
-    bool success = await CreateAccountRepo.create(
-        "hdsfljhsdaflkjhsalkdjh@yogirt.com", "hi123");
-    print(success);
-    if (success == true) {
-      emit(AccountCreateSuccessState());
-    } else {
-      emit(AccountCreateErrorState());
     }
   }
 }

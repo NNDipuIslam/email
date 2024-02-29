@@ -16,7 +16,3 @@ class PostFetchingSuccessfullState extends PostsState {
 
   PostFetchingSuccessfullState({required this.posts});
 }
-
-class AccountCreateSuccessState extends PostsActionState {}
-
-class AccountCreateErrorState extends PostsActionState {}
