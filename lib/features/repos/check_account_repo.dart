@@ -20,19 +20,17 @@ class checkAccountRepo {
         body: json.encode(data),
       );
 
-      print(response.statusCode);
-
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = json.decode(response.body);
 
-        // Extract the token value
         final String? token = responseData['token'];
         return token;
-      } else {}
+      }
     } catch (e) {
       return null;
     } finally {
-      client.close(); // Close the client to free up resources
+      client.close();
     }
+    return null;
   }
 }

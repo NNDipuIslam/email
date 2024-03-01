@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final messageuiDataModel = messageuiDataModelFromJson(jsonString);
-
 import 'dart:convert';
 
 List<MessageuiDataModel> messageuiDataModelFromJson(String str) =>

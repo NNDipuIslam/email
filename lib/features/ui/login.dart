@@ -84,27 +84,36 @@ class _loginState extends State<login> {
             ),
             Container(
               padding: EdgeInsets.all(10),
-              child: TextField(
-                controller: passwordController,
-                style: TextStyle(),
-                // obscureText: _obsecure,
-                decoration: InputDecoration(
-                  fillColor: Colors.grey.shade100,
-                  filled: true,
-                  hintText: "Password",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  /*suffixIcon: IconButton(
-                    onPressed: () {
-                      //   accountBloc.add(PasswordVisibilityChangeEvent());
-                    },
-                    icon: Icon(
-                        // _obsecure ? Icons.visibility_off : Icons.visibility,
-                        // color: Colors.grey,
-                        )
-                  )*/
-                ),
+              child: BlocBuilder<AccountBloc, AccountState>(
+                bloc: accountBloc,
+                builder: (context, state) {
+                  bool obscure = true;
+                  if (state is PasswordVisibilityChangeState) {
+                    obscure = state.isPasswordVisible;
+                  }
+                  return TextField(
+                    controller: passwordController,
+                    style: TextStyle(),
+                    obscureText: obscure,
+                    decoration: InputDecoration(
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      hintText: "Password",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          accountBloc.add(PasswordVisibilityChangeEvent());
+                        },
+                        icon: Icon(
+                          obscure ? Icons.visibility_off : Icons.visibility,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             ElevatedButton(

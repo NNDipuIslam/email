@@ -23,7 +23,6 @@ class _createState extends State<create> {
   @override
   void initState() {
     super.initState();
-    print('AccountBloc initialized');
   }
 
   @override
@@ -39,7 +38,6 @@ class _createState extends State<create> {
         ),
         body: BlocListener<AccountBloc, AccountState>(
           bloc: accountBloc,
-          // listenWhen: (previous, current) => current is AccountActionState,
           listener: (context, state) {
             if (state is PasswordVisibilityChangeState) {
               _obsecure = state.isPasswordVisible;
@@ -55,7 +53,7 @@ class _createState extends State<create> {
                         actions: [
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).pop(); // Close the dialog
+                              Navigator.of(context).pop();
                             },
                             child: Text('OK'),
                           ),
@@ -81,7 +79,7 @@ class _createState extends State<create> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => login(),
-                                  )); // Close the dialog
+                                  ));
                             },
                             child: Text('OK'),
                           ),
@@ -119,26 +117,36 @@ class _createState extends State<create> {
               ),
               Container(
                 padding: EdgeInsets.all(10),
-                child: TextField(
-                  controller: passwordController,
-                  style: TextStyle(),
-                  obscureText: _obsecure,
-                  decoration: InputDecoration(
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      hintText: "Password",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          accountBloc.add(PasswordVisibilityChangeEvent());
-                        },
-                        icon: Icon(
-                          _obsecure ? Icons.visibility_off : Icons.visibility,
-                          color: Colors.grey,
+                child: BlocBuilder<AccountBloc, AccountState>(
+                  bloc: accountBloc,
+                  builder: (context, state) {
+                    bool obscure = true;
+                    if (state is PasswordVisibilityChangeState) {
+                      obscure = state.isPasswordVisible;
+                    }
+                    return TextField(
+                      controller: passwordController,
+                      style: TextStyle(),
+                      obscureText: obscure,
+                      decoration: InputDecoration(
+                        fillColor: Colors.grey.shade100,
+                        filled: true,
+                        hintText: "Password",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      )),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            accountBloc.add(PasswordVisibilityChangeEvent());
+                          },
+                          icon: Icon(
+                            obscure ? Icons.visibility_off : Icons.visibility,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
               ElevatedButton(

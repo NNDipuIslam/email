@@ -26,6 +26,7 @@ class _dashboardState extends State<dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    int ans = 0;
     return Scaffold(
         appBar: AppBar(
           title: Center(child: Text("Temp Mail")),
@@ -45,66 +46,100 @@ class _dashboardState extends State<dashboard> {
                   ),
                 );
               } else if (state is MessageFetchingSuccessfullState) {
-                return Container(
-                  child: ListView.builder(
-                    itemCount: state.posts.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        child: Column(children: [
-                          custom(name: state.posts[index].to[index].address),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            height: 200,
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  "From",
-                                  style: TextStyle(
-                                      color: Colors.blue, fontSize: 20),
-                                ),
-                                Text(state.posts[index].from.name +
-                                    "<" +
-                                    state.posts[index].from.address +
-                                    ">"),
-                                Text(
-                                  "To",
-                                  style: TextStyle(
-                                      color: Colors.blue, fontSize: 20),
-                                ),
-                                Text(state.posts[index].to[index].address),
-                                Text(
-                                  "Time",
-                                  style: TextStyle(
-                                      color: Colors.blue, fontSize: 20),
-                                ),
-                                Text(state.posts[index].createdAt.toString()),
-                                Text(
-                                  "Subject",
-                                  style: TextStyle(
-                                      color: Colors.blue, fontSize: 20),
-                                ),
-                                Text(state.posts[index].subject),
-                                Text(
-                                  "Details",
-                                  style: TextStyle(
-                                      color: Colors.blue, fontSize: 20),
-                                ),
-                                Text(state.posts[index].intro),
-                              ],
-                            ),
-                          )
-                        ]),
-                      );
-                    },
+                final to = state.posts[0].to[0].address;
+                return Column(children: [
+                  custom(name: to),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: state.posts.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          child: Column(children: [
+                            Container(
+                              margin: EdgeInsets.all(10),
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade200,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "From",
+                                    style: TextStyle(
+                                        color: Colors.blue, fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(state.posts[index].from.name +
+                                      "<" +
+                                      state.posts[index].from.address +
+                                      ">"),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "To",
+                                    style: TextStyle(
+                                        color: Colors.blue, fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text("<" + to + ">"),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "Time",
+                                    style: TextStyle(
+                                        color: Colors.blue, fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(state.posts[index].createdAt.toString()),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "Subject",
+                                    style: TextStyle(
+                                        color: Colors.blue, fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(state.posts[index].subject),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "Details",
+                                    style: TextStyle(
+                                        color: Colors.blue, fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    state.posts[index].intro,
+                                    softWrap: true,
+                                  ),
+                                ],
+                              ),
+                            )
+                          ]),
+                        );
+                      },
+                    ),
                   ),
-                );
+                ]);
               } else {
                 return Text("Sorry");
               }
