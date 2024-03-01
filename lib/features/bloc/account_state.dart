@@ -22,7 +22,12 @@ class AccountCreateErrorState extends AccountState {
   });
 }
 
-class AccountCheckSuccessState extends AccountState {}
+class AccountCheckSuccessState extends AccountState {
+  final String token;
+  AccountCheckSuccessState({
+    required this.token,
+  });
+}
 
 class AccountCheckErrorState extends AccountState {}
 

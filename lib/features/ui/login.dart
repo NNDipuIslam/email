@@ -29,8 +29,13 @@ class _loginState extends State<login> {
           bloc: accountBloc,
           listener: (context, state) {
             if (state is AccountCheckSuccessState) {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => dashboard()));
+              print(state.token);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => dashboard(
+                            token: state.token,
+                          )));
             }
             if (state is AccountCheckErrorState) {
               showDialog(

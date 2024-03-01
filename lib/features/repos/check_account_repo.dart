@@ -28,9 +28,7 @@ class checkAccountRepo {
         // Extract the token value
         final String? token = responseData['token'];
         return token;
-      } else {
-        throw Exception('Failed to load token');
-      }
+      } else {}
     } catch (e) {
       return null;
     } finally {

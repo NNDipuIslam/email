@@ -29,7 +29,6 @@ FutureOr<void> _createAccountEvent(
   if (success == true) {
     emit(AccountCreateSuccessState(success: success));
   } else {
-    //print(success);
     emit(AccountCreateErrorState(success: success));
   }
 }
@@ -37,9 +36,8 @@ FutureOr<void> _createAccountEvent(
 FutureOr<void> _checkAccountEvent(
     CheckAccountEvent event, Emitter<AccountState> emit) async {
   String? token = await checkAccountRepo.check(event.email, event.password);
-  print(token);
   if (token != null) {
-    emit(AccountCheckSuccessState());
+    emit(AccountCheckSuccessState(token: token));
   } else {
     emit(AccountCheckErrorState());
   }

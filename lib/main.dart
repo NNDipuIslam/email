@@ -1,3 +1,4 @@
+import 'package:email/features/ui/dashboard.dart';
 import 'package:email/features/ui/domain.dart';
 import 'package:email/features/ui/login.dart';
 import 'package:flutter/material.dart';

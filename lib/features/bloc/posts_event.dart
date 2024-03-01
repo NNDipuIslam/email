@@ -6,4 +6,9 @@ sealed class PostsEvent {}
 
 class InitialFetchEvent extends PostsEvent {}
 
-class CreateAccountEvent extends PostsEvent {}
+class MessageCheckEvent extends PostsEvent {
+  String token;
+  MessageCheckEvent({
+    required this.token,
+  });
+}

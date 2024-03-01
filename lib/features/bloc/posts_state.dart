@@ -16,3 +16,13 @@ class PostFetchingSuccessfullState extends PostsState {
 
   PostFetchingSuccessfullState({required this.posts});
 }
+
+class MessageFetchingLoadingState extends PostsState {}
+
+class MessageFetchingErrorState extends PostsState {}
+
+class MessageFetchingSuccessfullState extends PostsState {
+  final List<MessageuiDataModel> posts;
+
+  MessageFetchingSuccessfullState({required this.posts});
+}
