@@ -6,6 +6,7 @@ sealed class PostsEvent {}
 
 class InitialFetchEvent extends PostsEvent {}
 
+// ignore: must_be_immutable
 class MessageCheckEvent extends PostsEvent {
   String token;
   MessageCheckEvent({

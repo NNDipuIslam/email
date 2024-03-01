@@ -15,6 +15,7 @@ class CreateAccountEvent extends AccountEvent {
   });
 }
 
+// ignore: must_be_immutable
 class CheckAccountEvent extends AccountEvent {
   String email;
   String password;

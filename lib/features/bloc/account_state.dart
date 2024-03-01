@@ -8,6 +8,7 @@ final class AccountInitial extends AccountState {}
 
 class AccountActionState extends AccountState {}
 
+// ignore: must_be_immutable
 class AccountCreateSuccessState extends AccountState {
   bool success;
   AccountCreateSuccessState({
@@ -15,6 +16,7 @@ class AccountCreateSuccessState extends AccountState {
   });
 }
 
+// ignore: must_be_immutable
 class AccountCreateErrorState extends AccountState {
   bool success;
   AccountCreateErrorState({

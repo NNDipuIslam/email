@@ -14,8 +14,8 @@ class CreateAccountRepo {
       var response = await client.post(
         Uri.parse('https://api.mail.tm/accounts'),
         headers: {
-          'accept': 'application/ld+json', // Specify accept header
-          'Content-Type': 'application/json', // Specify JSON content type
+          'accept': 'application/ld+json',
+          'Content-Type': 'application/json',
         },
         body: json.encode(data),
       );
@@ -27,7 +27,7 @@ class CreateAccountRepo {
     } catch (e) {
       return false;
     } finally {
-      client.close(); // Close the client to free up resources
+      client.close();
     }
   }
 }
